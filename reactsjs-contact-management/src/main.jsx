@@ -13,16 +13,20 @@ import ContactEdit from "./component/contact/ContactEdit";
 import ContactDetail from "./component/contact/ContactDetail";
 import AddressCreate from "./component/Address/AddressCreate";
 import AddressEdit from "./component/Address/AddressEdit";
+import ValidationUser from "./component/user/ValidationUser";
+import ProtectedRoute from "./component/user/ProtectedRoute";
+import "./index.css"
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <Routes>
+      <Routes path="/">
+        <Route index element={<ValidationUser />} />
         <Route element={<Layout />}>
           <Route path="/register" element={<UserRegister />} />
           <Route path="/login" element={<UserLogin />} />
         </Route>
-        <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route path="/dashboard" element={<ProtectedRoute><DashboardLayout/></ProtectedRoute>}>
           <Route path="users">
             <Route path="profile" element={<UserProfile />} />
             <Route path="logout" element={<UserLogout />} />
@@ -32,11 +36,11 @@ createRoot(document.getElementById("root")).render(
             <Route index element={<ContactList />} />
             <Route path="create" element={<ContactCreate />} />
             <Route path=":id">
-              <Route index element={<ContactDetail/>}/>
+              <Route index element={<ContactDetail />} />
               <Route path="edit" element={<ContactEdit />} />
               <Route path="addresses">
-                 <Route path="create" element={<AddressCreate/>}/>
-                 <Route path=":addressId/edit" element={<AddressEdit/>}/>
+                <Route path="create" element={<AddressCreate />} />
+                <Route path=":addressId/edit" element={<AddressEdit />} />
               </Route>
             </Route>
           </Route>

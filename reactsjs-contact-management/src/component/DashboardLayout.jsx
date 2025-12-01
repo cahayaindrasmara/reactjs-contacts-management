@@ -1,6 +1,22 @@
-import { Link, Outlet } from "react-router";
+import { Link, Outlet, useNavigate } from "react-router";
+import { useLocalStorage } from "react-use";
+import { useEffect } from "react";
 
 export default function DashboardLayout() {
+  const [token, _] = useLocalStorage("token", "");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!token) {
+      navigate({
+          pathname: "/login",
+        });
+    }
+       
+  }, [token, navigate]);
+
+  if (!token) return null;
+
   return (
     <>
       <div className="bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen flex flex-col">
@@ -8,7 +24,7 @@ export default function DashboardLayout() {
         <header className="bg-gradient shadow-lg">
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
             <Link
-              to='contacts'
+              to="contacts"
               className="flex items-center hover:opacity-90 transition-opacity duration-200"
             >
               <i className="fas fa-address-book text-white text-2xl mr-3" />
@@ -42,7 +58,7 @@ export default function DashboardLayout() {
         </header>
         {/* Main content */}
         <main className="container mx-auto px-4 py-8 flex-grow">
-          <Outlet/>
+          <Outlet />
           {/* Footer */}
           <div className="mt-10 mb-6 text-center text-gray-400 text-sm animate-fade-in">
             <p>© 2025 Contact Management. All rights reserved.</p>
