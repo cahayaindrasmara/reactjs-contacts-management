@@ -15,9 +15,9 @@ web.use(cors())
 
 // web.options("*", cors());
 
-web.get("/", (req, res) => {
-    res.status(200).json({ status: "OK", message: "API is running" });
-});
+// web.get("/", (req, res) => {
+//     res.status(200).json({ status: "OK", message: "API is running" });
+// });
 
 web.use(publicRouter);
 web.use(userRouter);
