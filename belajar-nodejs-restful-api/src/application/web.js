@@ -6,7 +6,11 @@ import cors from "cors"
 
 export const web = express();
 web.use(express.json());
-web.use(cors())
+web.use(cors({
+  origin: "https://reactjs-contacts-management.vercel.app",
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}))
 
 web.use(publicRouter);
 web.use(userRouter);
