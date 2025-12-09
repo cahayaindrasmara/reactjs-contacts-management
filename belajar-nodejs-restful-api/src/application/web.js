@@ -12,6 +12,8 @@ web.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"],
 }))
 
+web.options("*", cors());
+
 web.get("/", (req, res) => {
     res.status(200).json({ status: "OK", message: "API is running" });
 });
