@@ -7,12 +7,13 @@ import cors from "cors"
 export const web = express();
 web.use(express.json());
 web.use(cors({
-  origin: "https://reactjs-contacts-management.vercel.app",
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  origin: [
+    "http://localhost:5173",
+    "https://reactjs-contacts-management.vercel.app"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
-}))
-
-web.options("*", cors());
+}));
 
 web.get("/", (req, res) => {
     res.status(200).json({ status: "OK", message: "API is running" });
