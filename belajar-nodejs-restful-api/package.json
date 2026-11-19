@@ -11,7 +11,7 @@
       "^.+\\.[t|j]sx?$": "babel-jest"
     }
   },
-  "author": "Eko Kurniawan Khannedy",
+  "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
